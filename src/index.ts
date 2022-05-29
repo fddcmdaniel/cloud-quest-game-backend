@@ -15,8 +15,8 @@ import { UsersModules } from "./models/UsersModules";
 
 export const sequelize = new Sequelize("cloud-quest-db", "sa", "Joao1234!", {
   dialect: "mssql",
-  host: "192.168.1.245",
-  port: 1433
+  host: "jduart.ddns.net",
+  port: 8080
 });
 
 const main = async () => {
