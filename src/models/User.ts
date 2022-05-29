@@ -14,13 +14,13 @@ export class User extends Model {
       email: DataTypes.TEXT,
       password: DataTypes.TEXT,
       enable: DataTypes.INTEGER,
-      level_one: DataTypes.INTEGER,
-      level_two: DataTypes.INTEGER,
-      level_three: DataTypes.INTEGER,
-      level_four: DataTypes.INTEGER,
-      level_five: DataTypes.INTEGER,
+      level1: DataTypes.INTEGER,
+      level2: DataTypes.INTEGER,
+      level3: DataTypes.INTEGER,
+      level4: DataTypes.INTEGER,
+      level5: DataTypes.INTEGER
     },
-      { sequelize: sequelize, timestamps: false, modelName: 'users' })
+      { sequelize: sequelize, timestamps: false, modelName: 'user' })
   }
 
 }

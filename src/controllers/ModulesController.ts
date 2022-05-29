@@ -30,24 +30,6 @@ export class ModulesController {
     res.json(levels);
   }
 
-  // public static async getQuestions(req, res) {
-  //   const moduleId = req.params.id;
-  //   const module = await Modules.findByPk(moduleId);
-  //   const alreadyModule = await UsersModules.findOne({
-  //     where: {
-  //       module_id: moduleId
-  //     }
-  //   });
-
-  //   if (!module) return res.sendStatus(404);
-
-  //   //@ts-ignore
-  //   const questions = await module.getQuestions({ raw: true });
-  //   Object.keys(questions).map((value, i) => questions[value] = { ...questions[value], key: i });
-
-  //   res.json({ questions: questions, alreadyModule: alreadyModule ? true : false });
-  // }
-
   // public static async update(req, res) {
   //   const { module } = req.body;
   //   console.log("Hi", module);

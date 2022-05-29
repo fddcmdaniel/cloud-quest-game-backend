@@ -1,16 +1,31 @@
+import { Questions } from "../models/Questions";
 
 export class QuestionsController {
 
-  // public static async create(req, res) {
-  //   const { question, moduleId } = req.body;
-  //   const addQuestion = await Questions.create({ question: question, module_id: moduleId });
+  public static async create(req, res) {
+    const { question, type, moduleId } = req.body;
+    const addQuestion = await Questions.create({ question: question, type, module_id: moduleId });
 
-  //   if (addQuestion) {
-  //     Questions.max("id").then((id) => res.json(id));
-  //   } else {
-  //     res.sendStatus(400);
-  //   }
-  // }
+    if (addQuestion) {
+      Questions.max("id").then((id) => res.json(id));
+    } else {
+      res.sendStatus(400);
+    }
+  }
+
+  public static async get(req, res) {
+    const moduleId = req.params.id;
+    const questions = await Questions.findAll({
+      where: {
+        module_id: moduleId
+      },
+      raw: true
+    });
+
+    if (!questions) return res.sendStatus(404);
+
+    res.json(questions);
+  }
 
   // public static async update(req, res) {
   //   const { question } = req.body;

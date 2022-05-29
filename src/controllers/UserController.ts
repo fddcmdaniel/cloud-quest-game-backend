@@ -32,6 +32,77 @@ export class UserController {
     res.json(addedUser);
   }
 
+  public static async updateLevel(req, res) {
+    const { level, result } = req.body;
+    const id = req.session.userId;
+    let stars = 0;
+
+    if (result >= 50 && result < 75) {
+      stars = 1;
+    } else if (result >= 75 && result < 100) {
+      stars = 2;
+    } else if (result === 100) {
+      stars = 3;
+    }
+
+    const user = await User.findByPk(id);
+
+    console.log(result, user);
+
+    if (user === null) return res.sendStatus(404);
+
+    switch (level) {
+      case 1:
+        //@ts-ignore
+        if (user.level1 < stars) {
+          //@ts-ignore
+          user.level1 = stars;
+          await user.save({});
+          res.json(stars);
+        }
+        break;
+      case 2:
+        //@ts-ignore
+        if (user.level2 < stars) {
+          //@ts-ignore
+          user.level2 = stars;
+          await user.save({});
+          res.json(stars);
+        }
+        break;
+      case 3:
+        //@ts-ignore
+        if (user.level3 < stars) {
+          //@ts-ignore
+          user.level3 = stars;
+          await user.save({});
+          res.json(stars);
+        }
+        break;
+      case 4:
+        //@ts-ignore
+        if (user.level4 < stars) {
+          //@ts-ignore
+          user.level4 = stars;
+          await user.save({});
+          res.json(stars);
+        }
+        break;
+      case 5:
+        //@ts-ignore
+        if (user.level5 < stars) {
+          //@ts-ignore
+          user.level5 = stars;
+          await user.save({});
+          res.json(stars);
+        }
+        break;
+
+      default:
+        res.sendStatus(404);
+    }
+  }
+
   // public static async updatePassword(req, res) {
   //   const { currentPassword, newPassword } = req.body
   //   const id = req.session.userId;

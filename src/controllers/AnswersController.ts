@@ -1,32 +1,48 @@
+import { Answers } from "../models/Answers";
 
 export class AnswersController {
 
-  // public static async asCorrectInserted(questionId: number) {
-  //   const alreadyCorrect = await Answers.findOne({ where: { question_id: questionId, correct: 1 } });
-  //   return alreadyCorrect ? true : false;
-  // }
+  public static async asCorrectInserted(questionId: number) {
+    const alreadyCorrect = await Answers.findOne({ where: { question_id: questionId, correct: 1 } });
+    return alreadyCorrect ? true : false;
+  }
 
-  // public static async answerCorrectCheck(req, res) {
-  //   const { questionId } = req.body;
-  //   const alreadyCorrect = await AnswersController.asCorrectInserted(questionId);
-  //   res.send(alreadyCorrect);
-  // }
+  public static async answerCorrectCheck(req, res) {
+    const { questionId } = req.body;
+    const alreadyCorrect = await AnswersController.asCorrectInserted(questionId);
+    res.send(alreadyCorrect);
+  }
 
-  // public static async create(req, res) {
-  //   const { answer, isCorrect, questionId } = req.body;
-  //   const alreadyCorrect = await AnswersController.asCorrectInserted(questionId);
+  public static async create(req, res) {
+    const { answer, isCorrect, questionId } = req.body;
+    const alreadyCorrect = await AnswersController.asCorrectInserted(questionId);
 
-  //   if (!alreadyCorrect && isCorrect === 1) {
-  //     const addAnswer = await Answers.create({ answer: answer, correct: isCorrect, question_id: questionId });
-  //     return res.send(true);
-  //   }
+    if (!alreadyCorrect && isCorrect === 1) {
+      const addAnswer = await Answers.create({ answer: answer, correct: isCorrect, question_id: questionId });
+      return res.send(true);
+    }
 
-  //   const addAnswer = await Answers.create({ answer: answer, correct: isCorrect, question_id: questionId });
-  //   if (!addAnswer) return res.sendStatus(404);
+    const addAnswer = await Answers.create({ answer: answer, correct: isCorrect, question_id: questionId });
+    if (!addAnswer) return res.sendStatus(404);
 
-  //   console.log("Send: ", alreadyCorrect);
-  //   res.json(alreadyCorrect);
-  // }
+    console.log("Send: ", alreadyCorrect);
+    res.json(alreadyCorrect);
+  }
+
+  public static async get(req, res) {
+    const questionId = req.params.id;
+
+    const answers = await Answers.findAll({
+      where: {
+        question_id: questionId
+      },
+      raw: true
+    });
+
+    if (!answers) return res.sendStatus(404);
+
+    res.send(answers);
+  }
 
   // public static async update(req, res) {
   //   const { answer } = req.body;
