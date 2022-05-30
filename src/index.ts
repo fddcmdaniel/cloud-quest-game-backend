@@ -16,7 +16,7 @@ import { UsersModules } from "./models/UsersModules";
 export const sequelize = new Sequelize("cloud-quest-db", "sa", "Joao1234!", {
   dialect: "mssql",
   host: "jduart.ddns.net",
-  port: 8080
+  port: 31433
 });
 
 const main = async () => {
@@ -79,7 +79,7 @@ const main = async () => {
 
   // Users
 
-  app.listen(3001, () => console.log("Server started on port 3001"));
+  app.listen(443, () => console.log("Server started on port 443"));
 }
 
 main();
