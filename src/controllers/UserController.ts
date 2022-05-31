@@ -181,19 +181,19 @@ export class UserController {
     }
   }
 
-  // public static async logout(req, res) {
-  //   if (req.session.loggedIn) {
-  //     req.session.loggedIn = false
-  //     req.session.destroy(err => {
-  //       if (err) {
-  //         res.status(400).send('Unable to log out')
-  //       } else {
-  //         res.send(false)
-  //       }
-  //     });
-  //   } else {
-  //     res.end()
-  //   }
-  // }
+  public static async logout(req, res) {
+    if (req.session.loggedIn) {
+      req.session.loggedIn = false;
+      req.session.destroy(err => {
+        if (err) {
+          res.status(400).send('Unable to log out')
+        } else {
+          res.send(false)
+        }
+      });
+    } else {
+      res.end()
+    }
+  }
 
 }

@@ -24,7 +24,7 @@ const main = async () => {
   const app = express();
 
   app.use(express.json());
-  app.use(cors({ credentials: true, origin: "https://master.d3oms94k56pcuo.amplifyapp.com/" }));
+  app.use(cors({ credentials: true, origin: "http://localhost:8080" }));
   app.use(session({ secret: 'teste', name: 'SessionID', saveUninitialized: false, resave: true }));
 
   try {
@@ -62,6 +62,7 @@ const main = async () => {
   //User
   app.post('/user/authenticate', UserController.authenticate);
   app.post('/user', UserController.create);
+  app.get('/logout', UserController.logout);
 
   //Results
   app.post('/user/result', UserController.updateLevel);
